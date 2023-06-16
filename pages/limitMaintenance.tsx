@@ -11,6 +11,7 @@ import useRequests from '../hooks/useRequests'
 import svgSpinner from '../public/spinner.svg'
 import RequestDetailed from '../components/request/requestDetailed'
 import $ from 'jquery'
+import { PrismaClient } from '@prisma/client'
 import {useRouter} from "next/router";
 
 export default function LimitMaintenance({session,user}:any){
@@ -259,8 +260,9 @@ export const getServerSideProps = async (context:any) =>{
             permanent:false
         }
     }
+    const pcl = new PrismaClient();
     
-    const user = await prisma.user.findUnique({
+    const user = await pcl.user.findUnique({
          where:{
             //@ts-ignore
             email: session.user?.email
