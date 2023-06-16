@@ -1,7 +1,7 @@
 import { getSession, signOut } from "next-auth/react";
 import Signin from '../components/signin';
 import Animation from '../public/Animation.json';
-import Lottie from 'lottie-react'
+
 import limitIcon from '../public/limitIcon.png'
 import maintenanceIcon from '../public/maintenanceIcon.png'
 import Image from 'next/image'
@@ -13,7 +13,7 @@ export default function Home({session}:any) {
    
     return(
         <div className="relative h-screen w-full overflow-x-hidden">
-          {  <Lottie className="absolute w-full h-screen" animationData={Animation} />}
+           { /* <Lottie className="absolute w-full h-screen" animationData={Animation} /> */ }
             <div className="h-[72%] w-full bg-sky-400 flex flex-col items-center justify-end ">
                     {
                         !session ? 
