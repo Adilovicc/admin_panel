@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+::-webkit-scrollbar{
+    background-color:rgba(232, 241, 255, 0.104);
+    border-top: 0px solid rgba(0,0,0,0);
+    background-clip: padding-box;
+    right:0;
+    top:0;
+    width:12px;
+  }
+  
+::-webkit-scrolbar-track:hover{
+    background-color:rgba(232, 241, 255, 0.0);
+  }
+  
+ ::-webkit-scrolbar-track:hover{
+    background-color:rgba(232, 241, 255, 0.904);
+  }
+  
+::-webkit-scrollbar-thumb{
+    background-color: #0b0c0da6;
+    border: 2px solid rgba(0,0,0,0);
+    border-top: 5px solid rgba(0,0,0,0);
+    border-bottom: 5px solid rgba(0,0,0,0);
+    border-radius:20px;
+    background-clip:padding-box;
+  }

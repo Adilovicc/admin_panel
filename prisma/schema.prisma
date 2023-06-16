@@ -1,0 +1,88 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String?  @db.Text
+  access_token       String?  @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String?  @db.Text
+  session_state      String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  role          String   @default("regular")
+  accounts      Account[]
+  sessions      Session[]
+  limitRequests LimitRequest[]
+  limits        ActiveLimits?
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model ActiveLimits {
+    id    String     @id @default(cuid())
+    rib_limit Decimal @default(50000.00)
+    rmb_limit Decimal @default(50000.00)
+    cib_limit Decimal @default(10000000.00)
+    cmb_limit Decimal @default(10000000.00)
+    updatedAt DateTime?
+    updatedBy String?
+    user User @relation(fields:[userId], references: [id], onDelete: Cascade)
+    userId String @unique
+}
+
+model LimitRequest{
+   id String @id @default(cuid())
+   crt_rib_limit Decimal @default(50000.00)
+   crt_rmb_limit Decimal @default(50000.00)
+   crt_cib_limit Decimal @default(10000000.00)
+   crt_cmb_limit Decimal @default(10000000.00)
+   rib_limit Decimal @default(50000.00)
+   rmb_limit Decimal @default(50000.00)
+   cib_limit Decimal @default(10000000.00)
+   cmb_limit Decimal @default(10000000.00)
+   author User @relation(fields: [author_id], references: [id], onDelete: Cascade)
+   createdTime DateTime @default(now())
+   author_id String
+   status String @default("pending")
+   resolvedBy String?
+   resolvedTime DateTime?
+   rejectedReason String?
+}
