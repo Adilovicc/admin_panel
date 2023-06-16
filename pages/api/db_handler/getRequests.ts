@@ -1,11 +1,11 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../lib/prismadb";
+import { PrismaClient } from '@prisma/client'
 
 
 export default async function getRequests(req:NextApiRequest, res:NextApiResponse){
    
       const {startAt, pending, rejected,approved} = req.query;
-       
+      const prisma = new PrismaClient();
       try{
         const records = await prisma.limitRequest.findMany({
 

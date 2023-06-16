@@ -1,11 +1,12 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../../lib/prismadb";
+import { PrismaClient } from '@prisma/client'
 
 
 export default async function updateRequest(req:NextApiRequest, res:NextApiResponse){
     const {request,email} = req.body;
     const requestUnziped = JSON.parse(request);
     const currentTime = new Date();
+    const prisma = new PrismaClient();
 
     try {
         const profile=await prisma.limitRequest.update({
