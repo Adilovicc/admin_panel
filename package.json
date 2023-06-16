@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -34,6 +34,7 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.5.16",
+    "@types/react-lottie": "^1.2.6",
     "autoprefixer": "^10.4.14",
     "postcss": "^8.4.24",
     "prisma": "^4.15.0",
