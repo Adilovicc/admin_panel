@@ -230,8 +230,8 @@ export default function LimitMaintenance({session,user}:any){
                  <div className="p-5">
                     {requests.map((req,i)=>(
                        i+1 == requests.length ?  
-                        <div className="w-full" onClick={()=>handleSelectRequest(req)}><RequestListItem key={i} req={req} handleFullScreen={detailedMode}></RequestListItem></div>
-                       :  <div className="w-full" ref={lastElementView} onClick={()=>handleSelectRequest(req)}><RequestListItem  key={i} req={req} handleFullScreen={detailedMode}></RequestListItem></div>
+                        <div key={i} className="w-full" onClick={()=>handleSelectRequest(req)}><RequestListItem  req={req} handleFullScreen={detailedMode}></RequestListItem></div>
+                       :  <div key={i} className="w-full" ref={lastElementView} onClick={()=>handleSelectRequest(req)}><RequestListItem  req={req} handleFullScreen={detailedMode}></RequestListItem></div>
                     ))
                     }
             
