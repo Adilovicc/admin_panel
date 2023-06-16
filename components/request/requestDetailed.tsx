@@ -9,7 +9,7 @@ export default function RequestDetailed({req,user,resetNumber}:any){
         if(handlerActive) return;
         req.resolvedBy = user.email;
         axios({
-            url:'http://localhost:3000/api/db_handler/updateRequest',
+            url:'https://admin-panel-adilovicc.vercel.app/api/db_handler/updateRequest',
             data:{
              request: JSON.stringify(req),
              email: user.email

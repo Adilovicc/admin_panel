@@ -22,7 +22,7 @@ export default function useRequests(records:number, pending:string, rejected:str
             try {
               axios({
                 method:'GET',
-                url: `http://localhost:3000/api/db_handler/getRequests`,
+                url: `https://admin-panel-adilovicc.vercel.app/api/db_handler/getRequests`,
                 params: {
                     startAt: records,
                     pending:pending,
